@@ -15,7 +15,7 @@ struct Node
 void printList(Node* head){
     Node *temp = head;
     while(temp!=nullptr){
-        cout << temp->data << endl;
+        cout << temp->data <<" ";
         temp = temp->next;
     }
 }
@@ -32,11 +32,22 @@ void insertAtTail(Node* &head,int val){
     temp->next = new Node(val);
 }
 
+void insertAtBeg(Node* &head,int val){
+    Node *newNode = new Node(val);
+    newNode->next = head;
+    head = newNode;
+}
+// creating link list from an array 
+Node* creatLinkListFromArray(vector<int>&arr){
+    Node *head =nullptr;
+    for(auto val:arr){
+        insertAtTail(head, val);
+    }
+    return head;
+}
 
 int main(){
-    Node *first = new Node(10);
-    first->next = new Node(20);
-
-    insertAtTail(first, 30);
-    printList(first);
+    vector<int> arr = {1, 2, 3, 4, 5};
+    Node *head = creatLinkListFromArray(arr);
+    printList(head);
 }
