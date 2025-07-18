@@ -45,9 +45,40 @@ Node* creatLinkListFromArray(vector<int>&arr){
     }
     return head;
 }
+//
+void insertAtPosition(Node* &head, int position, int val) {
+    if(position <= 0) {
+        cout << "Invalid position\n";
+        return;
+    }
+
+    if(position == 1) {
+        insertAtBeg(head, val);
+        return;
+    }
+
+    Node* temp = head;
+    int count = 1;
+
+    while(temp != nullptr && count < position - 1) {
+        temp = temp->next;
+        count++;
+    }
+
+    if(temp == nullptr) {
+        cout << "Position out of bounds\n";
+        return;
+    }
+
+    Node* newNode = new Node(val);
+    newNode->next = temp->next;
+    temp->next = newNode;
+}
 
 int main(){
     vector<int> arr = {1, 2, 3, 4, 5};
     Node *head = creatLinkListFromArray(arr);
+    
+    insertAtPosition(head, 7, 99);
     printList(head);
 }
