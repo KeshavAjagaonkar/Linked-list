@@ -18,6 +18,7 @@ void printList(Node* head){
         cout << temp->data <<" ";
         temp = temp->next;
     }
+    cout << endl;
 }
 // here the change that may be small but very good impact when we pass it by reference . it avoid problem when the list is empty 
 void insertAtTail(Node* &head,int val){
@@ -31,7 +32,6 @@ void insertAtTail(Node* &head,int val){
     }
     temp->next = new Node(val);
 }
-
 void insertAtBeg(Node* &head,int val){
     Node *newNode = new Node(val);
     newNode->next = head;
@@ -75,10 +75,44 @@ void insertAtPosition(Node* &head, int position, int val) {
     temp->next = newNode;
 }
 
+// deletion 
+Node* deletefrombeg(Node* &head){
+    Node *temp = head;
+    head = head->next;
+    delete temp;
+    return head;
+}
+Node* deleteAtTail(Node* &head){
+    Node *temp=head;
+    //case 1:
+    if(head==nullptr){
+        return head;
+
+    }
+    //case 2:
+   if(head->next==nullptr){
+       Node *t1 = head;
+       head = nullptr;
+       delete t1;
+       return head;
+   }
+   while(temp->next->next!=nullptr){
+       temp = temp->next;
+   }
+    Node *t1 = temp->next;
+    temp->next = nullptr;
+    delete t1;
+    return head;
+}
+
 int main(){
     vector<int> arr = {1, 2, 3, 4, 5};
     Node *head = creatLinkListFromArray(arr);
     
-    insertAtPosition(head, 7, 99);
+    insertAtPosition(head,4, 99);
+    printList(head);
+    head=deletefrombeg(head);
+    printList(head);
+    head = deleteAtTail(head);
     printList(head);
 }
