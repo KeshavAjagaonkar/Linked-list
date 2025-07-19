@@ -36,10 +36,24 @@ Node *createlistFromArray(vector<int> &arr)
     return head;
 }
 
+Node* reverseDbl(Node* &head){
+    Node *temp = head;
+    while(temp->next){
+        swap(temp->back, temp->next);
+        temp = temp->back;
+    }
+    swap(temp->back, temp->next);
+    head = temp;
+    return head;
+}
+
 int main()
 {
     vector<int> array = {1, 2, 3, 4, 5};
     Node *head = createlistFromArray(array);
+    print(head);
+    head = reverseDbl(head);
+
     print(head);
 
     return 0;
