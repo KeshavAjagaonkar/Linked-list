@@ -123,6 +123,30 @@ Node *deletekthnode(Node *&head, int position)
     return head;
 }
 
+
+Node* insertatBeg(Node* &head,int val){
+    if(head==nullptr){
+        Node *temp = new Node(val, head, nullptr);
+        return temp;
+    }
+    Node *temp = new Node(val, head, nullptr);
+    head = temp;
+    return head;
+}
+
+Node* insertatEnd(Node* &head,int val){
+    if(head==nullptr){
+        Node *temp = new Node(val);
+        return temp;
+    }
+    Node *temp = head;
+    while(temp->next!=nullptr){
+        temp = temp->next;
+    }
+    temp->next = new Node(val, nullptr, temp);
+    return head;
+}
+
 int main()
 {
     vector<int> array = {1, 2, 3, 4, 5};
@@ -131,7 +155,14 @@ int main()
     // head = deleteFromBeg(head);
     // print(head);
     // head = deleteFromEnd(head);
-    head = deletekthnode(head,1);
+    // head = deletekthnode(head,1);
+    // print(head);
+    head = insertatBeg(head, 10);
+    cout << "insertinng at the begining" << endl;
     print(head);
+    cout << "insertinng at the end" << endl;
+    head = insertatEnd(head, 25);
+    print(head);
+
     return 0;
 }
