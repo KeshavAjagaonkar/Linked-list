@@ -1,5 +1,5 @@
-#include<iostream>
-#include<vector>
+#include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -7,39 +7,48 @@ struct Node
 {
     int data;
     Node *next;
-    Node(int val){
+    Node(int val)
+    {
         data = val;
         next = nullptr;
     }
 };
-void printList(Node* head){
+void printList(Node *head)
+{
     Node *temp = head;
-    while(temp!=nullptr){
-        cout << temp->data <<" ";
+    while (temp != nullptr)
+    {
+        cout << temp->data << " ";
         temp = temp->next;
     }
     cout << endl;
 }
-void insertAtTail(Node* &head,int val){
+void insertAtTail(Node *&head, int val)
+{
     Node *temp = head;
-    if(head==nullptr){
+    if (head == nullptr)
+    {
         head = new Node(val);
         return;
     }
-    while(temp->next!=nullptr){
+    while (temp->next != nullptr)
+    {
         temp = temp->next;
     }
     temp->next = new Node(val);
 }
-Node* creatLinkListFromArray(vector<int>&arr){
-    Node *head =nullptr;
-    for(auto val:arr){
+Node *creatLinkListFromArray(vector<int> &arr)
+{
+    Node *head = nullptr;
+    for (auto val : arr)
+    {
         insertAtTail(head, val);
     }
     return head;
 }
 
-int main(){
+int main()
+{
     vector<int> arr = {1, 2, 3, 4, 5};
     Node *head = creatLinkListFromArray(arr);
     printList(head);
